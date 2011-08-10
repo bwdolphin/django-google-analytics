@@ -6,7 +6,16 @@
     {% if track_page_load_time %}
         _gaq.push(['_trackPageLoadTime']);
     {% endif %}
-
+    {% if ga_custom_variables %}
+    {% for key in ga_custom_variables %}
+         {% if ga_custom_variables.key %}
+             _gaq.push(['_setCustomVar'
+                        {{ key }},
+                        '{{ ga_custom_variables.key.key }}',
+                        '{{ ga_custom_variables.key.value }}',
+                        {{ ga_custom_variables.key.scope }}]);
+         {% endif %}
+    {% endfor %}
     (function() {
         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
