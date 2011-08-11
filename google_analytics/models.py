@@ -11,3 +11,16 @@ class Analytics(models.Model):
     
     class Meta:
         verbose_name_plural = "Analytics"
+
+class session_variable(models.Model):
+    slot = models.IntegerField()
+    visitor_id = models.IntegerField()
+    session_starttime = models.IntegerField()
+    key = models.CharField(max_length=64)
+    value = models.CharField(max_length=64)
+
+class visitor_variable(models.Model):
+    slot = models.IntegerField()
+    visitor_id = models.IntegerField()
+    key = models.CharField(max_length=64)
+    value = models.CharField(max_length=64)
