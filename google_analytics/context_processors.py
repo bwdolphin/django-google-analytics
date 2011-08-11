@@ -18,20 +18,20 @@ class ga_custom_variable:
 
 # This is our context processor
 def google_async_variables(request):
-    return {'ga_custom_variables': get_analytics_dictionary(request)}
+    dictionary = get_analytics_dictionary(request)
+    return {'ga_custom_variables': dictionary}
 
 def clean_analytics_dictionary(dictionary):
-    copy = dictionary
-    for key in copy.keys():
+    for key in dictionary.keys():
         if key not in dict_keys:
-            del copy[key]
-    return copy
+            del dictionary[key]
 
+import copy
 def get_analytics_dictionary(request):
     if dict_keys in request.session:
-        dictionary = request.session[dict_keys].copy()
+        dictionary = copy.deepcopy(request.session[dict_keys])
         del request.session[dict_keys]
-        dictionary = clean_analytics_dictionary(dictionary)
+        clean_analytics_dictionary(dictionary)
         return dictionary
     else:
         return None

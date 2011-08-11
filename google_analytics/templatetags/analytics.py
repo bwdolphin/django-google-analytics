@@ -57,6 +57,7 @@ class AnalyticsNode(template.Node):
                 'track_page_load_time': getattr(settings,
                                                 "GOOGLE_ANALYTICS_TRACK_PAGE_LOAD_TIME",
                                                 False),
+                'ga_custom_variables': context['ga_custom_variables']
             })
             return t.render(c)
         else:
