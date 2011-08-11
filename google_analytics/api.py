@@ -1,5 +1,4 @@
 from google_analytics.context_processors import dict_keys, ga_custom_variable
-
     
 def set_variable(request, slot, key, value, scope):
     """
@@ -18,3 +17,4 @@ def set_variable(request, slot, key, value, scope):
     if slot in dictionary:
         raise KeyError('A variable already exists in that slot')
     dictionary[slot] = custom_variable
+    request.session[dict_keys] = dictionary

@@ -29,7 +29,7 @@ def clean_analytics_dictionary(dictionary):
 
 def get_analytics_dictionary(request):
     if dict_keys in request.session:
-        dictionary = request.session[dict_keys]
+        dictionary = request.session[dict_keys].copy()
         del request.session[dict_keys]
         dictionary = clean_analytics_dictionary(dictionary)
         return dictionary
